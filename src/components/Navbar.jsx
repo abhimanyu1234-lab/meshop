@@ -181,10 +181,10 @@ const Navbar = ({ length }) => {
           </button>
           {
             !data ? <>
-              <Link to="/register" className='link' style={{ textDecoration: 'none'}}>
+              <Link to="/register" className='link' style={{ textDecoration: 'none',color:'black'}}>
                 <MenuItem><p>Register</p></MenuItem>
               </Link>
-              <Link to="/login" style={{ textDecoration: 'none'}}>
+              <Link to="/login" style={{ textDecoration: 'none', color:'black'}}>
                 <MenuItem>Login</MenuItem>
               </Link>
             </> : <Button onClick={handleClick}> <ExitToAppOutlined /> </Button>
