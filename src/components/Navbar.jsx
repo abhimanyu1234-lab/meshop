@@ -77,7 +77,7 @@ font-size: 14px;
 cursor: pointer;
 margin-left: 25px;
 text-decoration: none;
-${mobile({ fontSize: "10px", marginLeft: "10px" })}
+${mobile({ fontSize: "13px", marginLeft: "10px" })}
 `
 const Button = styled.button`
 background:transparent;
@@ -181,11 +181,11 @@ const Navbar = ({ length }) => {
           </button>
           {
             !data ? <>
-              <Link to="/register" className='link'>
+              <Link to="/register" className='link' style={{ textDecoration: 'none'}}>
                 <MenuItem><p>Register</p></MenuItem>
               </Link>
-              <Link to="/login">
-                <MenuItem>Sign In</MenuItem>
+              <Link to="/login" style={{ textDecoration: 'none'}}>
+                <MenuItem>Login</MenuItem>
               </Link>
             </> : <Button onClick={handleClick}> <ExitToAppOutlined /> </Button>
           }
@@ -196,3 +196,4 @@ const Navbar = ({ length }) => {
 }
 
 export default Navbar;
+
