@@ -8,13 +8,13 @@ flex: 1;
 margin: 3px;
 height: 70vh;
 position: relative;
-${mobile({ height: "30vh" })}
+${mobile({ height: "25vh" })}
 `
 const Image = styled.img`
 width:100%;
 height: 100%;
 object-fit: cover;
-${mobile({ height: "30vh" })}
+${mobile({ height: "100%" })}
 `
 const Info = styled.div`
 position: absolute;
@@ -40,13 +40,15 @@ justifyContent: "center" })}
 const Title = styled.h1`
 color: white;
 margin-bottom: 20px;
-${mobile({ fontWeight:"100",color: "White" })}
+${mobile({ fontWeight:"15px",color: "white",fontSize:"18px" })}
 `
 const Button = styled.button`
 border: none;
 padding: 10px;
-background-color: white;
-color: gray;
+${'' /* background-color: white; */}
+background: linear-gradient(45deg, #009688, #ffeb3b);
+opacity:0.8;
+color: black;
 cursor: pointer;
 font-weight: 600;
 `
