@@ -13,6 +13,8 @@ border-radius: 10px; /* Add border-radius for rounded corners */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  ${mobile({  padding: "20px",display: "flex",
+  flexWrap: "wrap"})}
 `;
 
 
@@ -42,11 +44,12 @@ position: relative; */}
 `;
 
 const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
+  ${'' /* border: 0.5px solid lightgray; */}
   display: flex;
   align-items: center;
   margin-left: 25px;
   padding: 5px;
+  ${mobile({ padding: "4px",marginLeft: "5px", border:"none"})}
 `;
 
 const Input = styled.input`
@@ -55,7 +58,7 @@ const Input = styled.input`
   &:hover {
     border: none;
   }
-  ${mobile({ width: "50px" })}
+  ${mobile({ width: "70px", })}
 `;
 
 const Left = styled.div`
@@ -64,12 +67,15 @@ const Left = styled.div`
   align-items: center;
   justify-content: flex-start; /* Center content horizontally */
   ${'' /* justify-content: center; */}
-  border: 1px solid #3498db; /* Add border */
+  border: 2px solid black; /* Add border */
   border-radius: 10px; /* Add rounded corners */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
   padding: 10px; /* Increased padding for better spacing */
   margin:0px 0px;
-  margin-right: 1100px;
+  padding-top:1px;
+  padding-bottom:1px;
+  margin-right: 1190px;
+  ${mobile({ marginRight: "180px", paddingTop:"1px",paddingBottom:"1px",paddingLeft:"0px",paddingRight:"2px"})}
 `;
 
 const TopButton = styled.button`
@@ -85,111 +91,13 @@ const TopButton = styled.button`
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-
+  ${mobile({ paddingleft: "5px",marginLeft:"5px" })}
   &:hover {
     background-color: #45a049;
   }
 `;
 
-// const Products = ({ cat, filters, sort }) => {
-//   const [products, setProducts] = useState(popularProducts);
-//   const [searchText, setSearchText] = useState("");
 
-//   useEffect(() => {
-//     getProducts();
-//   }, [cat]);
-
-//   const handleChange = (e) => {
-//     setSearchText(e.target.value);
-//     if (e.target.value === "") {
-//       getProducts();
-//     }
-//   };
-
-//   const getProducts = async () => {
-//     try {
-//       const res = await axios.get(
-//         cat
-//           ? `https://shpme12.onrender.com/api/products?category=${cat}` : "https://shpme12.onrender.com/api/products"
-//       );
-//       console.log(res);
-//       setProducts(res.data);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   useEffect(() => {
-//     cat &&
-//       setProducts(
-//         products.filter((item) =>
-//           Object.entries(filters).every(([key, value]) =>
-//             item[key].includes(value)
-//           )
-//         )
-//       );
-//   }, [products, cat, filters]);
-
-//   useEffect(() => {
-//     if (sort === "newest") {
-//       setProducts((prev) =>
-//         [...prev].sort((a, b) => a.createdAt - b.createdAt)
-//       );
-//     } else if (sort === "asc") {
-//       setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
-//     } else {
-//       setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
-//     }
-//   }, [sort]);
-
-// //   const handleSearch=()=>{
-// //     let arr=[];
-// //     console.log(products)
-// //     for(let i=0;i<products?.length;i++){
-// //       if(products[i].title===searchText){
-// //         arr.push(products[i]);
-// //       }
-// //     }
-// //     // console.log("funs is caleeed")
-// //     setProducts(arr);
-// //     console.log("arr is ",arr);
-// //   }
-
-
-// //   console.log(filteredProducts);
-
-//   const handleSearch = () => {
-//     const lowercaseSearchText = searchText.toLowerCase();
-
-//     const filteredProducts = products.filter((product) =>
-//       product.title.toLowerCase().includes(lowercaseSearchText)
-//     );
-
-//     setProducts(filteredProducts);
-//   };
-
-//   return (
-//     <>
-//       <Left>
-//         <SearchContainer>
-//           <Input placeholder="Search" onChange={handleChange} />
-//         </SearchContainer>
-//         <TopButton onClick={handleSearch}>Search</TopButton>
-//       </Left>
-
-//       <Container>
-//         {products.slice(0, 20).map((item) => (
-//           <Product item={item} key={item.id} cat={cat} />
-//         ))}
-//       </Container>
-//     </>
-//   );
-// };
-
-// export default Products;
-
-
-//abhi
 
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
