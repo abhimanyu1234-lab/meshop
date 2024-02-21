@@ -2,7 +2,7 @@ import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } fro
 import React from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive'
-
+import { Link } from 'react-router-dom';
 const Container = styled.div`
 background: linear-gradient(45deg, #009688, #ffeb3b);
 border-radius: 10px; /* Add border-radius for rounded corners */
@@ -85,10 +85,14 @@ const Footer = () => {
                 </Desc>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
+                    <Link to ="https://www.facebook.com/profile.php?id=100027624997337">
                         <Facebook/>
+                    </Link>
                     </SocialIcon>
                     <SocialIcon color='E4405F'>
+                    <Link to ="https://www.instagram.com/abhimanyuyadav8831/">
                         <Instagram/>
+                    </Link>
                     </SocialIcon>
                     <SocialIcon color='55ACEE'>
                         <Twitter/>
@@ -130,3 +134,4 @@ const Footer = () => {
 }
 
 export default Footer
+
