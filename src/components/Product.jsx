@@ -1,103 +1,158 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { addProductApi } from '../service/productApi'
-import { useLocation, useNavigate } from 'react-router'
-import { publicRequest } from '../requestMethods'
-// import {addProduct} from "../redux/cartRedux";
+import { addProductApi } from '../service/productApi';
+import { useLocation, useNavigate } from 'react-router';
+import { publicRequest } from '../requestMethods';
 import { useDispatch } from 'react-redux';
 import { mobile } from "../responsive";
- //import { addProductApi } from '../service/productApi'
 
 const Info = styled.div`
-opacity: 0;
-width: 100%;
-height: 100%;
-position: absolute;
-top:0;
-left:0;
-background-color: rgba(0,0,0,0.2);
-z-index: 3;
-display: flex;
-flex-direction: column;
-align-items:center;
-justify-content: center;
-transition: all 0.5s ease;
-cursor: pointer;
-`
-const Subtotal = styled.div`
-width: 40px;
-height: 20px;
-margin-top  : 80px;
-border-radius: 10%;
-background-color: green;
-${'' /* align-items: center; */}
-display: flex;
-text-align:center;
-padding:1px 20px;
+  width: 100%;
+  height:100%
+  margin:1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  ${'' /* background-color: rgba(0,0,0,0.5); */}
+  ${'' /* background: linear-gradient(to right, #3d72b4, #525252); */}
+  background: linear-gradient(to bottom, #000000, #808080);
 
 
-`
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  ${mobile({ paddingTop: "5px" })}
+`;
 
 const Container = styled.div`
-flex:1;
-margin: 5px;
-min-width:280px;
-height: 350px;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #f5fbfd;
-position: relative;
-${mobile({ height: "200px" })}
+  flex: 1;
+  margin: 5px;
+  padding-bottom: 90px;
+  min-width: 280px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5fbfd;
+  position: relative;
+  ${mobile({ height: "120px",minWidth:"140px",paddingBottom: "70px" })}
+`;
 
-&:hover ${Info}{
-    opacity: 1;
-}
-`
-
-const Circle = styled.div`
-width: 200px;
-height: 200px;
-border-radius: 50%;
-background-color: white;
-position: absolute;
-`
 const Image = styled.img`
-width: 100%;
-height: 100%;
-z-index: 2;
-object-fit: cover;
-`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+ 
+  margin: 5px; /* Adjust as needed */
+
+`;
 
 const Icon = styled.div`
-width: 40px;
-height: 40px;
-border-radius: 50%;
-background-color: white;
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 10px;
-transition: all 0.5s ease;
-
-&:hover{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  ${'' /* background: linear-gradient(to right, #f6d365, #fda085); */}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+ ${mobile({ width: "30px",height: "30px" })}
+  &:hover {
     background-color: #e9f5f5;
-    transform:scale(1.1);
-}
+    transform: scale(1.1);
+  }
+`;
+const Icons = styled.span`
+  width: 50px;
+  height: 30px;
+  
+  font-weight: 600;
+  border-radius: 10%;
+  ${'' /* background-color: white; */}
+  text-decoration: none;
+  ${'' /* background: linear-gradient(45deg, #009688, #ffeb3b); */}
+  background: linear-gradient(to left,transparent, #f9ca24, #f0932b);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${'' /* transition: all 0.5s ease; */}
+  cursor: pointer;
+ ${mobile({ width: "50px",height: "30px" })}
+  &:hover {
+    background-color: #e9f5f5;
+    transform: scale(1.1);
+  }
+`;
+
+const Button = styled.button`
+  position: relative; /* Required for positioning the pseudo-element */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to left, transparent, white);
+  cursor: pointer;
+  ${mobile({ width: "35px", height: "35px" })}
+
+  &:hover::after {
+    content: "Add to Cart"; /* Displayed text */
+    position: absolute; /* Position relative to the button */
+    top: -30px; /* Move the text above the button */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #e9f5f5; /* Background color */
+    padding: 5px 10px; /* Padding for spacing */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 10px; /* Text size */
+    font-weight: bold; /* Bold text */
+    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);  Box shadow for depth */
+    z-index: 1; /* Ensure the text is above other content */
+  }
+
+  &:hover {
+    background-color: #e9f5f5;
+    transform: scale(1.1);
+  }
+`;
+
+
+const Title = styled.span`
+  color: white;
+  font-size: 20px;
+  fontWeight:15px;
+  margin-left:2px;
+  ${mobile({ fontSize:"15px" })}
+  
+`;
+
+const Price = styled.span`
+  color: white;
+ 
+  margin-right:2px;
+  font-size: 20px;
+  ${mobile({ fontSize:"13px" })}
+`;
+
+const Subtotal = styled.div`
+margin:5px;
+display: flex;
+  justify-content: space-between;
+  width: 90%;
+
 `
-const Button=styled.button`
-${'' /* padding: 15px; */}
-width: 40px;
-height: 40px;
-border-radius: 50%;
-background-color: white;
-cursor: pointer;
-${'' /* border: 2px solid teal;
-background-color: white; */}
-${'' /* cursor: pointer;
-font-weight: 500;` */}`
 
 const Product = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
@@ -112,12 +167,9 @@ const Product = ({ item }) => {
     const userData = JSON.parse(localStorage.getItem('user'));
 
     if (!userData) {
-      // Redirect to login if user is not logged in
-      // You may want to handle this more gracefully, perhaps with a modal
       window.location.href = '/login';
     } else {
       try {
-        // Add product to cart API call
         const response = await addProductApi({
           userId: userData._id,
           productId: item._id,
@@ -127,8 +179,6 @@ const Product = ({ item }) => {
         });
 
         if (response) {
-          // Update the cart in Redux store
-          //dispatch(addToCart({ ...item, quantity, size }));
           alert('Item added to cart!');
         }
       } catch (error) {
@@ -136,34 +186,33 @@ const Product = ({ item }) => {
       }
     }
   };
-// const Product = ({ item }) => {
-    return (
-        <Container>
-            <Circle />
-            <Image src={item.img} />
-            <Info>
-            <total>
-                <Icon>
-                    {/* <Link to="/cart"> */}
-                    <Button onClick={handleAddToCart}>
-             <ShoppingCartOutlined />
-           </Button>
-                        
-                    {/* </Link> */}
-                </Icon>
-                <Icon>
-                    <Link to={`/product/${item._id}`}>
-                        <SearchOutlined />
-                    </Link>
-                </Icon>
-            </total>    
-            <Subtotal>
-            ₨-{item.price}
-            </Subtotal>
-            </Info>
-        </Container>
-    )
-}
-export default Product;
 
+  return (
+    <Container>
+      
+        <Image src={item.img} />
+      
+      <Info>
+        <Subtotal>
+        <Title>{item.title}</Title>
+        <Price>₹{item.price}</Price>
+        </Subtotal>
+        <ButtonContainer>
+          <Icon>
+            <Button onClick={handleAddToCart}>
+              <ShoppingCartOutlined />
+            </Button>
+          </Icon>
+          <Icons>
+            <Link to={`/product/${item._id}`} style={{ textDecoration: 'none',color:'Black' ,fontWeight: '800px'}}>
+              BUY 
+            </Link>
+          </Icons>
+        </ButtonContainer>
+      </Info>
+    </Container>
+  );
+};
+
+export default Product;
 
