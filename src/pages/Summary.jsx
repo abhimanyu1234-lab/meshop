@@ -114,7 +114,12 @@ const Summary = ({ totalPrice, productList,user }) => {
                 <SummaryItemText >Total</SummaryItemText>
                 <SummaryItemPrice>₹ {totalPrice}</SummaryItemPrice>
             </SummaryItem>
-            <StripeCheckout
+            <a href={`https://wa.me/918544169503?text=Check out this product: ${productList}`}>
+        <Button>
+          Whatsapp Now
+        </Button>
+      </a>
+{/*             <StripeCheckout
                 name="AY"
                 img="https://avatars.githubusercontent.com/u/1486366>v=4"
                 billingAddress
@@ -125,7 +130,7 @@ const Summary = ({ totalPrice, productList,user }) => {
                 stripeKey={KEY}
             >
                 <Button>CHECKOUT NOW</Button>
-            </StripeCheckout>
+            </StripeCheckout> */}
         </SummaryBox>
 
     )
