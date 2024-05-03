@@ -6,6 +6,8 @@ import { addProductApi } from '../service/productApi';
 import { useLocation, useNavigate } from 'react-router';
 import { publicRequest } from '../requestMethods';
 import { useDispatch } from 'react-redux';
+//import whatsappicon from '../whatsappicon.png';
+import walogo from './walogo.png'
 import { mobile } from "../responsive";
 
 const Info = styled.div`
@@ -60,9 +62,9 @@ const ButtonContainer = styled.div`
 
 const Icon = styled.div`
   width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
+  height: 35px;
+  ${'' /* border-radius: 20%; */}
+  ${'' /* background-color: white; */}
   ${'' /* background: linear-gradient(to right, #f6d365, #fda085); */}
   display: flex;
   align-items: center;
@@ -101,10 +103,12 @@ const Icons = styled.span`
 const Button = styled.button`
   position: relative; /* Required for positioning the pseudo-element */
   width: 50px;
+  font-weight: 900;
   height: 40px;
   color: white;
-  border-radius: 20%;
-  background-color: green;
+  font-size: 50px
+  border-radius: 5%;
+  background-color: rgba(0, 128, 0, 0.3);
   ${'' /* background: linear-gradient(to left, transparent, white); */}
   cursor: pointer;
   ${mobile({ width: "45px", height: "35px" })}
@@ -115,11 +119,11 @@ const Button = styled.button`
     top: -30px; /* Move the text above the button */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
-    background-color: #e9f5f5; /* Background color */
+    
     padding: 5px 10px; /* Padding for spacing */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 10px; /* Text size */
-    font-weight: bold; /* Bold text */
+    border-radius: 5%; /* Rounded corners */
+    font-size: 50px; /* Text size */
+    font-weight: 900; /* Bold text */
     /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);  Box shadow for depth */
     z-index: 1; /* Ensure the text is above other content */
   }
@@ -155,6 +159,7 @@ display: flex;
   width: 90%;
 
 `
+
 
 const Product = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
@@ -203,10 +208,14 @@ const Product = ({ item }) => {
           <Icon>
 
           <a href={`https://wa.me/918544169503?text=Check out this product: ${item.img},${item.price} and ${item.title}`}>
-        <Button>
-          Chat
-        </Button>
+        
+          
+          
+          <img src={walogo} class="logo" style={{ height: '50px', width: '80px', display: 'block' }}/>
+          
+        
       </a>
+
 
             {/* <Button onClick={handleAddToCart}>
               <ShoppingCartOutlined />
@@ -224,7 +233,4 @@ const Product = ({ item }) => {
 };
 
 export default Product;
-
-
-
 
