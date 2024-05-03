@@ -100,12 +100,14 @@ const Icons = styled.span`
 
 const Button = styled.button`
   position: relative; /* Required for positioning the pseudo-element */
-  width: 40px;
+  width: 50px;
   height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(to left, transparent, white);
+  color: white;
+  border-radius: 20%;
+  background-color: green;
+  ${'' /* background: linear-gradient(to left, transparent, white); */}
   cursor: pointer;
-  ${mobile({ width: "35px", height: "35px" })}
+  ${mobile({ width: "45px", height: "35px" })}
 
   &:hover::after {
     content: "Add to Cart"; /* Displayed text */
@@ -199,9 +201,16 @@ const Product = ({ item }) => {
         </Subtotal>
         <ButtonContainer>
           <Icon>
-            <Button onClick={handleAddToCart}>
+
+          <a href={`https://wa.me/918544169503?text=Check out this product: ${item.img},${item.price} and ${item.title}`}>
+        <Button>
+          Chat
+        </Button>
+      </a>
+
+            {/* <Button onClick={handleAddToCart}>
               <ShoppingCartOutlined />
-            </Button>
+            </Button> */}
           </Icon>
           <Icons>
             <Link to={`/product/${item._id}`} style={{ textDecoration: 'none',color:'Black' ,fontWeight: '800px'}}>
@@ -215,4 +224,7 @@ const Product = ({ item }) => {
 };
 
 export default Product;
+
+
+
 
