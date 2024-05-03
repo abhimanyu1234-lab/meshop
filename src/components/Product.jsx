@@ -207,7 +207,7 @@ const Product = ({ item }) => {
         <ButtonContainer>
           <Icon>
 
-          <a href={`https://wa.me/918544169503?text=Check out this product: ${item.img},${item.price} and ${item.title}`}>
+          <a href={`https://wa.me/918544169503?text=Check%20out%20this%20product:%0AImage:%20${encodeURIComponent(item.img)}%0APrice:%20${encodeURIComponent(item.price)}%0ATitle:%20${encodeURIComponent(item.title)}`}>
         
           
           
