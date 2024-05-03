@@ -30,9 +30,9 @@ const SummaryItemPrice = styled.span``
 const Button = styled.button`
 width: 100%;
 padding: 10px;
-background-color: black;
+background-color: green;
 color: white;
-font-weight: 600;
+font-weight: 700;
 cursor: pointer;
 `
 
@@ -114,7 +114,7 @@ const Summary = ({ totalPrice, productList,user }) => {
                 <SummaryItemText >Total</SummaryItemText>
                 <SummaryItemPrice>₹ {totalPrice}</SummaryItemPrice>
             </SummaryItem>
-            <a href={`https://wa.me/918544169503?text=Check out this product: ${productList}`}>
+            <a href={`https://wa.me/918544169503?text=Check out this product: ${totalPrice}`}>
         <Button>
           Whatsapp Now
         </Button>
